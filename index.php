@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <?php require_once './includes/head.php'; ?>
+    <title>Blogzawesome</title>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <?php require_once './includes/header.php'; ?>
+        </header>
+        <div class="content">
+
+        </div>
+        <footer>
+            <?php require_once './includes/footer.php'; ?>
+        </footer>
+    </div>
     
+
 </body>
 </html>
