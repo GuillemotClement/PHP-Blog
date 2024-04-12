@@ -16,6 +16,10 @@
     textarea {
       height: 25rem;
     }
+    .text-error{
+      color: var(--danger);
+      font-size: 1rem;
+    }
   }
   .form-action {
     display: flex;

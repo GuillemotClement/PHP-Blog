@@ -110,6 +110,10 @@ select {
 .form-container .form-control textarea {
   height: 25rem;
 }
+.form-container .form-control .text-error {
+  color: var(--danger);
+  font-size: 1rem;
+}
 .form-container .form-action {
   display: flex;
   justify-content: center;
