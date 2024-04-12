@@ -1,0 +1,27 @@
+.form-container {
+  display: flex;
+  flex-flow: column;
+  h1 {
+    text-align: center;
+    // margin-bottom: 1.5rem;
+  }
+  .form-control {
+    font-family: var(--font-text);
+    display: flex;
+    flex-flow: column;
+    margin: 2rem;
+    label {
+      margin-bottom: 0.5rem;
+    }
+    textarea {
+      height: 25rem;
+    }
+  }
+  .form-action {
+    display: flex;
+    justify-content: center;
+    .btn {
+      margin-right: 1rem;
+    }
+  }
+}

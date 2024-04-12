@@ -83,5 +83,19 @@ footer {
 
 .content {
   flex: 1;
-  // background: var(--background-lite);
+  //   background: var(--background-lite);
+  max-width: 100rem;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-self: center;
+  padding: 2rem 0;
+}
+
+.block {
+  padding: 1.5rem;
+  border-radius: 5px;
+  border: var(--border);
+  background-color: white;
+  box-shadow: var(--shadow);
 }

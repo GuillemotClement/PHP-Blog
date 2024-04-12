@@ -6,20 +6,14 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <?php require_once './includes/header.php'; ?>
-        </header>
+        <?php require_once './includes/header.php'; ?>
+        
         <div class="content">
-            <h1>Accueil</h1>
-            <pre>
-            <?= print_r($_SERVER); die;?>
-            </pre>
+            
+            
         </div>
-        <footer>
-            <?php require_once './includes/footer.php'; ?>
-        </footer>
+        
+        <?php require_once './includes/footer.php'; ?>
     </div>
-    
-
 </body>
 </html>
