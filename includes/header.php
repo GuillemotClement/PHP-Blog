@@ -2,10 +2,9 @@
     <i class="fa-solid fa-cat mr-5"></i>
     Blogzawesome
 </a>
-<nav>
-    <ul>
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">A Propos</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</nav>
+<ul class="header-menu">
+    <li class=<?= $_SERVER['REQUEST_URI'] === '/add-article.php' ? "active" : '' ?>>
+        <a href="/add-article.php" >Ecrire un article</a></li>
+    <li><a href="#">A Propos</a></li>
+    <li><a href="#">Contact</a></li>
+</ul>
