@@ -91,6 +91,12 @@ select {
   padding: 1rem;
 }
 
+.block {
+  background: var(white);
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+}
+
 .form-container {
   display: flex;
   flex-flow: column;
@@ -120,6 +126,39 @@ select {
 }
 .form-container .form-action .btn {
   margin-right: 1rem;
+}
+
+.category-container h2 {
+  font-size: 1.9rem;
+  padding: 0 1.5rem;
+  margin-top: 1rem;
+}
+
+.articles-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.article {
+  flex: 30%;
+  margin: 1rem;
+  min-height: 410px;
+  cursor: pointer;
+}
+.article h3 {
+  font-size: 1.7rem;
+  padding: 1rem 1.5rem;
+}
+.article-picture {
+  height: 30rem;
+  border-radius: 5px;
+  background-size: cover;
+  transition: transform 0.4s;
+}
+.article-picture:hover {
+  transform: scale(1.2);
 }
 
 .container {
@@ -212,6 +251,10 @@ footer .ctn-social li:hover {
   border: var(--border);
   background-color: white;
   box-shadow: var(--shadow);
+}
+
+.overflow {
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=styles.css.map */

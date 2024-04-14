@@ -1,0 +1,36 @@
+
+.category-container{
+    h2{
+        font-size: 1.9rem;
+        padding: 0 1.5rem;
+        margin-top: 1rem;
+    }
+}
+
+.articles-container{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .article{
+    flex: 30%;
+    margin: 1rem;
+    min-height: 410px;
+    cursor: pointer;
+    h3{
+        font-size: 1.7rem;
+        padding: 1rem 1.5rem;
+    }
+    &-picture{
+        height: 30rem;
+        border-radius: 5px;
+        background-size: cover;
+        transition: transform 0.4s;
+        &:hover{
+            transform: scale(1.2);
+
+        }
+    }
+  }

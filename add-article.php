@@ -1,13 +1,15 @@
 
 <?php 
-// DECLARATION DU FILENAME POUR STOCKER LES DONNEES
-$filename = __DIR__ . '/data/articles.json';
+
 
 // DECLARATION CONSTANTE MSG D'ERREUR
 const ERROR_REQUIRED = "Saisir une valeur";
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
 const ERROR_CONTENT_TOO_SHORT = 'Article trop court';
 const ERROR_PIC_URL = 'Image doit etre une url valide';
+
+// DECLARATION DU FILENAME POUR STOCKER LES DONNEES
+$filename = __DIR__ . '/data/articles.json';
 
 // INITIALISATION TABLEAU ERREURS
 $errors = [
@@ -17,16 +19,17 @@ $errors = [
     'content' => ''
 ];
 
-// DECLARATIOM D'UIN TABLEAU VIDE POUR LES ARTICLES
-$articles = [];
+// on verifie que le fichier existe
+if(file_exists($filename)){
+    // si il existe on le decode et on recupere les donnes
+    $articles = json_decode(file_get_contents($filename), true) ?? [];
+}
+
+
 
 //VERIFICATION METHODE ENVOI
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    // on verifie que le fichier existe
-    if(file_exists($filename)){
-        // si il existe on le decode et on recupere les donnes
-        $articles = json_decode(file_get_contents($filename), true) ?? [];
-    }
+
     // filtration des données saisis par l'user
     $_POST = filter_input_array(
         INPUT_POST,
@@ -79,13 +82,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(empty(array_filter($errors, fn($e) => $e !== ''))){
         //on recup les donnes du nouvel article et on ajoute dans le tableau d'article
         $articles = [...$articles, [
-            'id' => time(),
             'title' => $title,
             'picture' => $picture,
             'category' => $category,
-            'content' => $content
+            'content' => $content,
+            'id' => time(),
         ]];
         //encode et on ecrase ancien fichier
+        $jsonData = json_encode($articles);
+
+
+
         file_put_contents($filename, json_encode($articles));
         //on renvoie user vers l'accueil
         header('Location: /');
@@ -126,7 +133,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <select name="category" id="category">
                             <option value="technology">Technologie</option>
                             <option value="nature">Nature</option>
-                            <option value="politic">Politique</option>
                             <option value="sport">Sport</option>
                         </select>
                         <?php if($errors['category']) : ?>

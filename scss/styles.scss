@@ -3,6 +3,7 @@
 @use "media-queries" as *;
 @use "utilities";
 @use "add-article";
+@use "index";
 
 .container {
   min-height: 100vh;
@@ -99,3 +100,8 @@ footer {
   background-color: white;
   box-shadow: var(--shadow);
 }
+
+.overflow{
+  overflow: hidden;
+}
+
