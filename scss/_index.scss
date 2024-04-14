@@ -1,5 +1,14 @@
 
-.category-container{
+.newsfeed-container{
+    display: flex;
+    flex-flow: row nowrap;
+    &category{
+        flex: 200px;
+        li{
+            margin: 1rem 0;
+            font-size: 3rem;
+        }
+    }
     h2{
         font-size: 1.9rem;
         padding: 0 1.5rem;
@@ -33,4 +42,15 @@
 
         }
     }
+  }
+
+  .newsfeed-container .category{
+    li{
+        margin: 1rem 0;
+        font-size: 3rem;
+        transform: color 0.3s;
+    }
+    li:hover{
+        color: var(--primary);
+    };
   }
