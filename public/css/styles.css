@@ -186,6 +186,33 @@ select {
   color: var(--primary);
 }
 
+.container-article {
+  padding-bottom: 10rem;
+}
+.container-article-link {
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+  display: block;
+}
+.container-article-cover {
+  height: 50rem;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  border-radius: 0.5rem;
+}
+.container-article-title {
+  margin: 3rem 0;
+  text-align: left;
+  font-size: 5rem;
+  font-weight: 400;
+}
+.container-article-content {
+  white-space: pre-wrap;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
