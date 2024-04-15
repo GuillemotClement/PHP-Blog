@@ -19,7 +19,7 @@ $errors = [
     'content' => ''
 ];
 
-
+$category = '';
 if(file_exists($filename)){
     // si il existe on le decode et on recupere les donnes
     $articles = json_decode(file_get_contents($filename), true) ?? [];
