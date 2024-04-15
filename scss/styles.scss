@@ -5,6 +5,7 @@
 @use "add-article";
 @use "index";
 @use "show-article";
+@use "edit-article";
 
 .container {
   min-height: 100vh;
@@ -102,13 +103,11 @@ footer {
   box-shadow: var(--shadow);
 }
 
-.overflow{
+.overflow {
   overflow: hidden;
 }
 
-
-
-.cat-active{
+.cat-active {
   color: var(--primary);
   font-weight: 700;
 }

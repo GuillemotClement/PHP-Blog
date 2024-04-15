@@ -54,6 +54,13 @@ a {
       box-shadow: var(--shadow);
     }
   }
+  &-warning {
+    background: var(--edit);
+    transition: all 0.3s;
+    &:hover {
+      background: var(--edit-dark);
+    }
+  }
 }
 
 input,
@@ -64,7 +71,7 @@ select {
   padding: 0.5rem;
 }
 
-.small{
+.small {
   font-size: 1.2rem;
   margin: 0 0.5rem;
 }

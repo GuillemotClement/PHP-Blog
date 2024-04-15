@@ -44,6 +44,9 @@ if(!$id){
                 <p class="container-article-category"><?= $article['category']?></p>
                 <p class="container-article-content"><?= $article['content']?></p>
             </div>
+            <div class="action">
+                <a href="/edit-article.php?id=<?=$article['id']?>" class="btn btn-edit">Editer l'article</a>
+            </div>
             
         </div>
 
