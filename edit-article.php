@@ -1,15 +1,34 @@
 
 <?php 
-
+$pdo = require_once './database.php';
+$statementCreateOne = $pdo->prepare('
+    INSERT INTO article (
+        title,
+        content, 
+        category,
+        picture
+    ) VALUES (
+        :title,
+        :content,
+        :category,
+        :picture
+)');
+$statementUpdateOne = $pdo->prepare('
+        UPDATE article
+        SET
+            title=:title,
+            content=:content,
+            category=:category,
+            picture=:picture
+        WHERE id=:id
+');
+$statementReadOne = $pdo->prepare('SELECT * FROM article WHERE id=:id');
 
 // DECLARATION CONSTANTE MSG D'ERREUR
 const ERROR_REQUIRED = "Saisir une valeur";
 const ERROR_TITLE_TOO_SHORT = 'Le titre est trop court';
 const ERROR_CONTENT_TOO_SHORT = 'Article trop court';
 const ERROR_PIC_URL = 'Image doit etre une url valide';
-
-// DECLARATION DU FILENAME POUR STOCKER LES DONNEES
-$filename = __DIR__ . '/data/articles.json';
 
 // INITIALISATION TABLEAU ERREURS
 $errors = [
@@ -20,25 +39,18 @@ $errors = [
 ];
 
 $category = '';
-if(file_exists($filename)){
-    // si il existe on le decode et on recupere les donnes
-    $articles = json_decode(file_get_contents($filename), true) ?? [];
-}
 
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 if($id){
-    $articleIndex = array_search($id, array_column($articles, 'id'));
-    $article = $articles[$articleIndex];
+    $statementReadOne->bindValue(':id', $id);
+    $statementReadOne->execute();
+    $article = $statementReadOne->fetch();
     $title = $article['title'];
     $picture = $article['picture'];
     $category = $article['category'];
     $content = $article['content'];
 }
-// on verifie que le fichier existe
-
-
-
 
 //VERIFICATION METHODE ENVOI
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -95,23 +107,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(empty(array_filter($errors, fn($e) => $e !== ''))){
         //on recup les donnes du nouvel article et on ajoute dans le tableau d'article
         if($id){
-            $articles[$articleIndex]['title'] = $title;
-            $articles[$articleIndex]['picture'] = $picture;
-            $articles[$articleIndex]['category'] = $category;
-            $articles[$articleIndex]['content'] = $content;
-
-        }else {
-            $articles = [...$articles, [
-                'title' => $title,
-                'picture' => $picture,
-                'category' => $category,
-                'content' => $content,
-                'id' => time(),
-            ]];
-            //encode et on ecrase ancien fichier
-            // $jsonData = json_encode($articles);
+            // $article['title'] = $title;
+            // $article['picture'] = $picture;
+            // $article['category'] = $category;
+            // $article['content'] = $content;
+            $statementUpdateOne->bindValue(':title', $title);
+            $statementUpdateOne->bindValue(':content', $content);
+            $statementUpdateOne->bindValue(':category', $category);
+            $statementUpdateOne->bindValue(':picture', $picture);
+            $statementUpdateOne->bindValue(':id', $id);
+            $statementUpdateOne->execute();
+        } else {
+            $statementCreateOne->bindValue(':title', $title);
+            $statementCreateOne->bindValue(':content', $content);
+            $statementCreateOne->bindValue(':category', $category);
+            $statementCreateOne->bindValue(':picture', $picture);
+            $statementCreateOne->execute();
         }
-        file_put_contents($filename, json_encode($articles));
         //on renvoie user vers l'accueil
         header('Location: /');
     }
@@ -165,7 +177,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <?php endif; ?>
                     </div>
                     <div class="form-action">
-                        <button type="submit" class="btn btn-primary" type="button"><?= $id ? 'Modifier' : 'Sauvegarder' ?></button>
+                        <button type="submit" class="btn btn-primary"><?= $id ? 'Modifier' : 'Sauvegarder' ?></button>
                         <a class="btn btn-secondary" type="button" href="/">Annuler</a>
                     </div>
                 </form>
