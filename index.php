@@ -1,14 +1,7 @@
-<pre>
 <?php
-$pdo = require_once './database.php';
-
-// On vient récupérer les données de la BDD
-$statement = $pdo->prepare('SELECT * FROM article');
-$statement->execute();
-$articles = $statement->fetchAll();
-
+$articleDB = require_once './database/models/ArticleDB.php';
+$articles = $articleDB->fetchAll();
 $category = [];
-
 
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $selectedCat = $_GET['cat'] ?? '';
@@ -32,10 +25,7 @@ if(count($articles)){
         return $acc;
     }, []);
 }
-
 ?>
-</pre>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +36,6 @@ if(count($articles)){
 <body>
     <div class="container">
         <?php require_once './includes/header.php'; ?>
-        
         <div class="content">
             <div class="newsfeed-container">
                 <ul class="category">
@@ -85,10 +74,8 @@ if(count($articles)){
                     <?php endif; ?>
                 </div>
             </div> 
-        </div>
-            
+        </div>     
     </div>
-        
         <?php require_once './includes/footer.php'; ?>
     </div>
 </body>

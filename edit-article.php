@@ -1,28 +1,6 @@
 
 <?php 
-$pdo = require_once './database.php';
-$statementCreateOne = $pdo->prepare('
-    INSERT INTO article (
-        title,
-        content, 
-        category,
-        picture
-    ) VALUES (
-        :title,
-        :content,
-        :category,
-        :picture
-)');
-$statementUpdateOne = $pdo->prepare('
-        UPDATE article
-        SET
-            title=:title,
-            content=:content,
-            category=:category,
-            picture=:picture
-        WHERE id=:id
-');
-$statementReadOne = $pdo->prepare('SELECT * FROM article WHERE id=:id');
+$articleDB = require_once './database/models/ArticleDB.php';
 
 // DECLARATION CONSTANTE MSG D'ERREUR
 const ERROR_REQUIRED = "Saisir une valeur";
@@ -37,15 +15,12 @@ $errors = [
     'category' => '',
     'content' => ''
 ];
-
 $category = '';
 
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 if($id){
-    $statementReadOne->bindValue(':id', $id);
-    $statementReadOne->execute();
-    $article = $statementReadOne->fetch();
+    $article = $articleDB->fetchOne($id);
     $title = $article['title'];
     $picture = $article['picture'];
     $category = $article['category'];
@@ -54,7 +29,6 @@ if($id){
 
 //VERIFICATION METHODE ENVOI
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
     // filtration des données saisis par l'user
     $_POST = filter_input_array(
         INPUT_POST,
@@ -107,22 +81,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(empty(array_filter($errors, fn($e) => $e !== ''))){
         //on recup les donnes du nouvel article et on ajoute dans le tableau d'article
         if($id){
-            // $article['title'] = $title;
-            // $article['picture'] = $picture;
-            // $article['category'] = $category;
-            // $article['content'] = $content;
-            $statementUpdateOne->bindValue(':title', $title);
-            $statementUpdateOne->bindValue(':content', $content);
-            $statementUpdateOne->bindValue(':category', $category);
-            $statementUpdateOne->bindValue(':picture', $picture);
-            $statementUpdateOne->bindValue(':id', $id);
-            $statementUpdateOne->execute();
+            $article['title'] = $title;
+            $article['picture'] = $picture;
+            $article['category'] = $category;
+            $article['content'] = $content;
+
+            $articleDB->updateOne($article);
         } else {
-            $statementCreateOne->bindValue(':title', $title);
-            $statementCreateOne->bindValue(':content', $content);
-            $statementCreateOne->bindValue(':category', $category);
-            $statementCreateOne->bindValue(':picture', $picture);
-            $statementCreateOne->execute();
+        $articleDB->createOne([
+            'title'=>$title,
+            'content'=>$content,
+            'category'=>$category,
+            'picture'=>$picture
+            ]);
         }
         //on renvoie user vers l'accueil
         header('Location: /');

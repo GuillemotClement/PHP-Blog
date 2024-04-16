@@ -1,21 +1,18 @@
 <pre>
 <?php 
-$pdo = require_once './database.php';
-$statement = $pdo->prepare('SELECT * FROM article WHERE id=:id');
+// on vient récupérer la classe qui permet de faire les requetes lié à article
+$articleDB = require_once './database/models/ArticleDB.php';
+
 $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 
-//si pas d'id, on redirige vers l'accueil
+
 if(!$id){
     header('Location: /');
 }else{
-    $statement->bindValue(':id', $id);
-    $statement->execute();
-    $article = $statement->fetch();
+    // on affiche l'article via la méthode de la classe
+    $article = $articleDB->fetchOne($id);
 }
-
-
-
 ?>
 </pre>
 
