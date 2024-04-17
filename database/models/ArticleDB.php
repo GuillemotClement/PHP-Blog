@@ -17,12 +17,14 @@ class ArticleDB
                 title,
                 content, 
                 category,
-                picture
+                picture,
+                author
             ) VALUES (
                 :title,
                 :content,
                 :category,
-                :picture
+                :picture,
+                :author
         )');
 
         $this->statementUpdateOne = $pdo->prepare('
@@ -31,7 +33,8 @@ class ArticleDB
                     title=:title,
                     content=:content,
                     category=:category,
-                    picture=:picture
+                    picture=:picture,
+                    author=:author
                 WHERE id=:id
         ');
 
@@ -68,6 +71,7 @@ class ArticleDB
         $this->statementCreateOne->bindValue(':content', $article['content']);
         $this->statementCreateOne->bindValue(':category', $article['category']);
         $this->statementCreateOne->bindValue(':picture', $article['picture']);
+        $this->statementCreateOne->bindValue(':author', $article['author']);
         $this->statementCreateOne->execute();
         //on vient retourner l'article créer
         return $this->fetchOne($this->pdo->lastInsertId());
@@ -79,6 +83,7 @@ class ArticleDB
         $this->statementUpdateOne->bindValue(':category', $article['category']);
         $this->statementUpdateOne->bindValue(':picture', $article['picture']);
         $this->statementUpdateOne->bindValue(':id', $article['id']);
+        $this->statementUpdateOne->bindValue(':author', $article['author']);
         $this->statementUpdateOne->execute();
         return $article;
     }

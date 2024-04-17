@@ -1,5 +1,8 @@
 <pre>
 <?php 
+require_once __DIR__ . '/database/database.php';
+require_once __DIR__ . '/database/security.php';
+$currentUser = isLoggedIn();
 // on vient récupérer la classe qui permet de faire les requetes lié à article
 $articleDB = require_once './database/models/ArticleDB.php';
 
@@ -35,13 +38,15 @@ if(!$id){
                 <h1 class="container-article-title"><?= $article['title']?></h1>
                 <div class="container-article-separator"></div>
                 <p class="container-article-category"><?= $article['category']?></p>
+                <p class="container-article-category"><?= $article['author']?></p>
                 <p class="container-article-content"><?= $article['content']?></p>
             </div>
-            <div class="action">
-                <a href="/delete-article.php?id=<?=$article['id']?>" class="btn btn-danger">Supprimer</a>
-                <a href="/edit-article.php?id=<?=$article['id']?>" class="btn btn-edit">Editer l'article</a>
-            </div>
-            
+            <?php if($currentUser && $currentUser['id'] === $article['author']): ?>
+                <div class="action">
+                    <a href="/delete-article.php?id=<?=$article['id']?>" class="btn btn-danger">Supprimer</a>
+                    <a href="/edit-article.php?id=<?=$article['id']?>" class="btn btn-edit">Editer l'article</a>
+                </div>
+            <?php endif; ?>
         </div>
 
         <?php require_once './includes/footer.php'; ?>

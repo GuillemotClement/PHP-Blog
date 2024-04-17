@@ -1,5 +1,14 @@
 
 <?php 
+require_once __DIR__ . '/database/database.php';
+require_once __DIR__ . '/database/security.php';
+
+$currentUser = isLoggedIn();
+
+if(!$currentUser){
+    header('Location: /');
+}
+
 $articleDB = require_once './database/models/ArticleDB.php';
 
 // DECLARATION CONSTANTE MSG D'ERREUR
@@ -85,14 +94,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $article['picture'] = $picture;
             $article['category'] = $category;
             $article['content'] = $content;
-
+            $article['author'] = $currentUser['id'];
             $articleDB->updateOne($article);
         } else {
         $articleDB->createOne([
             'title'=>$title,
             'content'=>$content,
             'category'=>$category,
-            'picture'=>$picture
+            'picture'=>$picture,
+            'author'=>$currentUser['id']
             ]);
         }
         //on renvoie user vers l'accueil
