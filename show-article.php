@@ -38,8 +38,8 @@ if(!$id){
                 <h1 class="container-article-title"><?= $article['title']?></h1>
                 <div class="container-article-separator"></div>
                 <p class="container-article-category"><?= $article['category']?></p>
-                <p class="container-article-category"><?= $article['author']?></p>
                 <p class="container-article-content"><?= $article['content']?></p>
+                <p class="article-author"><?= $article['firstname'] . ' ' . $article['lastname']?></p>
             </div>
             <?php if($currentUser && $currentUser['id'] === $article['author']): ?>
                 <div class="action">

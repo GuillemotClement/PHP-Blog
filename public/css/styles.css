@@ -181,6 +181,12 @@ a {
   white-space: pre-wrap;
 }
 
+.article-author {
+  font-size: 1.3rem;
+  font-style: italic;
+  text-align: end;
+}
+
 header {
   background-color: var(--primary);
   color: var(--text-light);
