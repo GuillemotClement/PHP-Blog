@@ -1,0 +1,38 @@
+input,
+textarea,
+select {
+  border-radius: 5px;
+  border: var(--border);
+  padding: 0.5rem;
+}
+form {
+  display: flex;
+  flex-flow: column;
+  border: var(--border);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+  .form-control {
+    font-family: var(--font-text);
+    display: flex;
+    flex-flow: column;
+    margin: 2rem;
+    .form-label {
+      margin-bottom: 0.5rem;
+    }
+    textarea {
+      height: 25rem;
+    }
+    .text-error {
+      color: var(--danger);
+      font-size: 1rem;
+    }
+  }
+  .form-action {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    .btn {
+      margin-right: 1rem;
+    }
+  }
+}

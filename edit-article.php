@@ -110,10 +110,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <body>
     <div class="container">
         <?php require_once './includes/header.php'; ?>
-
+        
         <div class="content">
+            <h1><?= $id ? 'Modifier un article' : 'Creer un nouvel article' ?></h1>
             <div class="block p-20 form-container">
-                <h1><?= $id ? 'Modifier un article' : 'Creer un nouvel article' ?></h1>
+                
                 <form action="/edit-article.php<?= $id ? "?id=$id" : ''?>" method="post">
                     <div class="form-control">
                         <label for="title">Titre</label>

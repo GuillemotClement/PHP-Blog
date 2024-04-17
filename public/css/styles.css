@@ -74,14 +74,6 @@ a {
   background: var(--edit-dark);
 }
 
-input,
-textarea,
-select {
-  border-radius: 5px;
-  border: var(--border);
-  padding: 0.5rem;
-}
-
 .small {
   font-size: 1.2rem;
   margin: 0 0.5rem;
@@ -107,37 +99,6 @@ select {
   background: var(white);
   border-radius: 5px;
   box-shadow: var(--shadow);
-}
-
-.form-container {
-  display: flex;
-  flex-flow: column;
-}
-.form-container h1 {
-  text-align: center;
-}
-.form-container .form-control {
-  font-family: var(--font-text);
-  display: flex;
-  flex-flow: column;
-  margin: 2rem;
-}
-.form-container .form-control label {
-  margin-bottom: 0.5rem;
-}
-.form-container .form-control textarea {
-  height: 25rem;
-}
-.form-container .form-control .text-error {
-  color: var(--danger);
-  font-size: 1rem;
-}
-.form-container .form-action {
-  display: flex;
-  justify-content: center;
-}
-.form-container .form-action .btn {
-  margin-right: 1rem;
 }
 
 .newsfeed-container {
@@ -261,6 +222,46 @@ header .header-menu .active {
   text-decoration: underline;
 }
 
+input,
+textarea,
+select {
+  border-radius: 5px;
+  border: var(--border);
+  padding: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-flow: column;
+  border: var(--border);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+form .form-control {
+  font-family: var(--font-text);
+  display: flex;
+  flex-flow: column;
+  margin: 2rem;
+}
+form .form-control .form-label {
+  margin-bottom: 0.5rem;
+}
+form .form-control textarea {
+  height: 25rem;
+}
+form .form-control .text-error {
+  color: var(--danger);
+  font-size: 1rem;
+}
+form .form-action {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+form .form-action .btn {
+  margin-right: 1rem;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -303,6 +304,9 @@ footer .ctn-social li:hover {
   flex-flow: column;
   align-self: center;
   padding: 2rem 0;
+}
+.content h1 {
+  text-align: center;
 }
 
 .block {

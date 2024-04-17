@@ -5,12 +5,13 @@
 @use "add-article";
 @use "index";
 @use "show-article";
-@use "edit-article";
+// @use "edit-article";
 @use "header";
 @use "profil";
 @use "auth-login";
 @use "auth-logout";
 @use "auth-register";
+@use "form";
 
 .container {
   min-height: 100vh;
@@ -57,6 +58,9 @@ footer {
   flex-flow: column;
   align-self: center;
   padding: 2rem 0;
+  h1 {
+    text-align: center;
+  }
 }
 
 .block {
