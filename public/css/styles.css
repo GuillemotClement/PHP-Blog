@@ -220,12 +220,6 @@ select {
   white-space: pre-wrap;
 }
 
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 header {
   background-color: var(--primary);
   color: var(--text-light);
@@ -254,7 +248,7 @@ header .header-menu li {
   font-family: var(--font-title);
   margin-right: 1rem;
   font-size: 2rem;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1rem;
   border-radius: 5px;
   transition: all 0.3s;
 }
@@ -264,6 +258,13 @@ header .header-menu li:hover {
 }
 header .header-menu .active {
   background: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
