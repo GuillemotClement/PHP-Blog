@@ -1,8 +1,8 @@
 <?php 
 require_once __DIR__ . '/database/database.php';
-require_once __DIR__ . '/database/security.php';
+$authDB = require __DIR__ . '/database/security.php';
 
-$currentUser = isLoggedIn();
+$currentUser = $authDB->isLoggedIn();
 
 if(!$currentUser){
     header('Location: /');

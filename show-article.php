@@ -1,8 +1,8 @@
 <pre>
 <?php 
 require_once __DIR__ . '/database/database.php';
-require_once __DIR__ . '/database/security.php';
-$currentUser = isLoggedIn();
+$authDB = require __DIR__ . '/database/security.php';
+$currentUser = $authDB->isLoggedIn();
 // on vient récupérer la classe qui permet de faire les requetes lié à article
 $articleDB = require_once './database/models/ArticleDB.php';
 

@@ -1,5 +1,6 @@
 <?php
 $pdo = require_once './database/database.php';
+$authDB = require_once './database/security.php';
 
 const ERROR_REQUIRED = 'Saisir une valeur pour ce champ';
 const ERROR_TOO_SHORT = "Ce champ est trop court";
@@ -57,20 +58,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   }
 
   if(empty(array_filter($errors, fn($e) => $e !== ''))) {
-    $statementRegister = $pdo->prepare('INSERT INTO user VALUES (
-      DEFAULT,
-      :firstname,
-      :lastname,
-      :email,
-      :password
-    )');
-    $hashedPassword = password_hash($password, PASSWORD_ARGON2I);
-    $statementRegister->bindValue(':firstname', $firstname);
-    $statementRegister->bindValue(':lastname', $lastname);
-    $statementRegister->bindValue(':email', $email);
-    $statementRegister->bindValue(':password', $hashedPassword);
-    $statementRegister->execute();
-
+    $authDB->register([
+      'firstname'=>$firstname,
+      'lastname'=>$lastname,
+      'email'=>$email,
+      'password'=>$password
+    ]);
     header('Location: /');
   }
 }
