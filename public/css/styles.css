@@ -196,6 +196,7 @@ header {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 header .icone {
   font-size: 3.5rem;
@@ -206,6 +207,9 @@ header .icone i {
 }
 header .icone:hover {
   color: var(--gray-dark);
+}
+header .header-mobile {
+  display: none;
 }
 header .header-menu {
   display: flex;
@@ -240,6 +244,34 @@ header .header-menu .profile {
   justify-content: center;
 }
 
+.header-mobile-list {
+  display: none;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: var(--background-light);
+  color: var(--text-color);
+}
+.header-mobile-list li {
+  padding: 1rem;
+}
+.header-mobile-list li:active {
+  color: white;
+  font-weight: 700;
+}
+
+.show {
+  display: block;
+}
+
+@media only screen and (max-width: 800px) {
+  .header-menu {
+    display: none;
+  }
+  .header-mobile {
+    display: block;
+  }
+}
 .container-info {
   margin-bottom: 2.5rem;
 }
