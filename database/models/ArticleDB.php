@@ -8,6 +8,7 @@ class ArticleDB
     private PDOStatement $statementReadOne;
     private PDOStatement $statementReadAll;
     private PDOStatement $statementDeleteOne;
+    private PDOStatement $statementReadUserAll;
     
 
     function __construct(private PDO $pdo)
@@ -39,13 +40,12 @@ class ArticleDB
         ');
 
         $this->statementReadOne = $pdo->prepare('SELECT article.*, user.firstname, user.lastname FROM article LEFT JOIN user ON article.author = user.id WHERE article.id=:id');
-
         $this->statementReadAll = $pdo->prepare('SELECT article.*, user.firstname, user.lastname  FROM article LEFT JOIN user ON article.author = user.id');
-
         $this->statementDeleteOne = $pdo->prepare('DELETE FROM article WHERE id=:id');
+        $this->statementReadUserAll = $pdo->prepare('SELECT * FROM article WHERE author=:authorId');
     }
 
-    public function fetchAll()
+    public function fetchAll(): array
     {
         $this->statementReadAll->execute();
         return $this->statementReadAll->fetchAll();
@@ -58,14 +58,14 @@ class ArticleDB
         return $this->statementReadOne->fetch();
     }
 
-    public function deleteOne(int $id)
+    public function deleteOne(int $id): string
     {
         $this->statementDeleteOne->bindValue(':id', $id);
         $this->statementDeleteOne->execute();
         return $id;
     }
     
-    public function createOne($article)
+    public function createOne($article): array
     {
         $this->statementCreateOne->bindValue(':title', $article['title']);
         $this->statementCreateOne->bindValue(':content', $article['content']);
@@ -77,7 +77,8 @@ class ArticleDB
         return $this->fetchOne($this->pdo->lastInsertId());
     }
     
-    public function updateOne($article){
+    public function updateOne($article): array
+    {
         $this->statementUpdateOne->bindValue(':title', $article['title']);
         $this->statementUpdateOne->bindValue(':content', $article['content']);
         $this->statementUpdateOne->bindValue(':category', $article['category']);
@@ -86,6 +87,13 @@ class ArticleDB
         $this->statementUpdateOne->bindValue(':author', $article['author']);
         $this->statementUpdateOne->execute();
         return $article;
+    }
+
+    public function fetchUserArticle(string $authorId): array
+    {
+        $this->statementReadUserAll->bindValue(':authorId', $authorId);
+        $this->statementReadUserAll->execute();
+        return $this->statementReadUserAll->fetchAll();
     }
 }
 

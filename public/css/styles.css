@@ -210,6 +210,7 @@ header .icone:hover {
 header .header-menu {
   display: flex;
   flex-flow: row nowrap;
+  align-items: center;
 }
 header .header-menu li {
   font-family: var(--font-title);
@@ -226,6 +227,40 @@ header .header-menu li:hover {
 header .header-menu .active {
   background: var(--primary-dark);
   text-decoration: underline;
+}
+header .header-menu .profile {
+  border-radius: 50%;
+  font-weight: bold;
+  background: var(--primary-dark);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-info {
+  margin-bottom: 2.5rem;
+}
+.container-info li {
+  display: flex;
+}
+.container-info li strong {
+  margin-right: 2.5rem;
+}
+
+.articles-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.articles-list li .article-action {
+  margin-bottom: 1.5rem;
+}
+.articles-list li .article-action a {
+  margin-left: 1.5rem;
 }
 
 input,

@@ -10,13 +10,13 @@
 	<ul class="header-menu">
 		<?php if($currentUser) : ?>
 			<li class=<?= $_SERVER['REQUEST_URI'] === '/edit-article.php' ? "active" : '' ?>>
-				<a href="/edit-article.php" >Ecrire un article</a>
-			</li>
-			<li class=<?= $_SERVER['REQUEST_URI'] === '/profil.php' ? "active" : '' ?>>
-				<a href="/profil.php">Ma page</a>
+				<a href="/edit-article.php">Ecrire un article</a>
 			</li>
 			<li class=<?= $_SERVER['REQUEST_URI'] === '/auth-logout.php' ? "active" : '' ?>>
 				<a href="/auth-logout.php">Déconnexion</a>
+			</li>
+			<li class="<?= $_SERVER['REQUEST_URI'] === '/profil.php' ? "active" : '' ?> profile">
+				<a href="/profil.php"><?= $currentUser['firstname'][0] . $currentUser['lastname'][0] ?></a>
 			</li>
 		<?php else :?>
 			<li class=<?= $_SERVER['REQUEST_URI'] === '/auth-login.php' ? "active" : '' ?>>

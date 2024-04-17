@@ -20,6 +20,7 @@ header {
   .header-menu {
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     li {
       font-family: var(--font-title);
       margin-right: 1rem;
@@ -36,6 +37,17 @@ header {
     .active {
       background: var(--primary-dark);
       text-decoration: underline;
+    }
+    .profile {
+      border-radius: 50%;
+      font-weight: bold;
+      background: var(--primary-dark);
+      height: 40px;
+      width: 40px;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

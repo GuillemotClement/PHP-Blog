@@ -1,0 +1,25 @@
+.container {
+  &-info {
+    margin-bottom: 2.5rem;
+    li {
+      display: flex;
+      strong {
+        margin-right: 2.5rem;
+      }
+    }
+  }
+}
+.articles-list {
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    .article-action {
+      margin-bottom: 1.5rem;
+      a {
+        margin-left: 1.5rem;
+      }
+    }
+  }
+}

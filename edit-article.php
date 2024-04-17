@@ -1,4 +1,3 @@
-
 <?php 
 require_once __DIR__ . '/database/database.php';
 require_once __DIR__ . '/database/security.php';
@@ -30,6 +29,9 @@ $_GET = filter_input_array(INPUT_GET, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $id = $_GET['id'] ?? '';
 if($id){
     $article = $articleDB->fetchOne($id);
+    if(!$article['author'] !== $currentUser['id']){
+        header('Location: /');
+    }
     $title = $article['title'];
     $picture = $article['picture'];
     $category = $article['category'];
