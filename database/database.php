@@ -7,8 +7,8 @@
 
 
 
-$dns = 'mysql:host=localhost;dbname=bog';
-// $dns = 'mysql:host=localhost;dbname=blog';
+// $dns = 'mysql:host=localhost;dbname=bog';
+$dns = 'mysql:host=localhost;dbname=blog';
 $usr = 'root';
 
 
@@ -21,7 +21,7 @@ try{
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ]);   
 }catch(PDOException $e){
-    echo 'Error DB : ' . $e->getMessage();
+    throw new Exception($e->getMessage());
 }
 
 return $pdo;
