@@ -7,7 +7,8 @@
 
 
 
-$dns = 'mysql:host=localhost;dbname=bog';
+// $dns = 'mysql:host=localhost;dbname=bog';
+$dns = 'mysql:host=localhost;dbname=blog';
 $usr = 'root';
 
 

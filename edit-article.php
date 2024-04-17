@@ -33,11 +33,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $_POST = filter_input_array(
         INPUT_POST,
         [
-            'title' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'title' => FILTER_SANITIZE_SPECIAL_CHARS,
             'picture' => FILTER_SANITIZE_URL,
-            'category' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'category' => FILTER_SANITIZE_SPECIAL_CHARS,
             'content' => [
-                'filter' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+                'filter' => FILTER_SANITIZE_SPECIAL_CHARS,
                 'flag' => FILTER_FLAG_NO_ENCODE_QUOTES
             ],
         ]);

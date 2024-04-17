@@ -2,7 +2,8 @@
 
 $articles = json_decode(file_get_contents('./articles.json'), true);
 
-$dns = 'mysql:host=localhost;dbname=bog';
+// $dns = 'mysql:host=localhost;dbname=bog';
+$dns = 'mysql:host=localhost;dbname=blog';
 $usr = 'root';
 $pwd = '849Tcmh@uvfk';
 
